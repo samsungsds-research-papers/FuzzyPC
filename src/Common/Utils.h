@@ -82,22 +82,22 @@ std::vector<std::vector<std::string>> concatenate(
  *
  * @param column
  * @param deduplicated
- * @param indexMapFromDeduplicated
+ * @param deduplicatedToRows
  */
 void deduplication(const std::vector<std::string> &column,
                    std::vector<std::string> &deduplicated,
-                   std::vector<size_t> &indexMapFromDeduplicated);
+                   std::vector<size_t> &deduplicatedToRows);
 
 /**
  * @brief
  *
  * @param column
  * @param deduplicated
- * @param indexMapFromDeduplicated
+ * @param deduplicatedToRows
  */
 void deduplication(const std::vector<uint64_t> &column,
                    std::vector<uint64_t> &deduplicated,
-                   std::vector<size_t> &indexMapFromDeduplicated);
+                   std::vector<size_t> &deduplicatedToRows);
 
 /**
  * @brief
@@ -166,50 +166,4 @@ std::unordered_map<size_t, size_t> equality(
 std::unordered_map<size_t, size_t> threshold1(
     const std::vector<std::vector<uint64_t>> &input1,
     const std::vector<std::vector<uint64_t>> &input2);
-
-void preprocessColumn(const std::vector<std::byte> &rawItemsInByte,
-                      const uint32_t itemSizeInByte,
-                      std::vector<std::byte> &processedIntemsInByte,
-                      std::vector<uint64_t> &idxItemToRow,
-                      const std::vector<std::byte> &dummy);
-
-std::map<std::string, std::vector<std::string>> readTable(
-    const std::string &fileName, const char delimiter = ',',
-    const bool hasHeader = true, const uint32_t maxNumRows = 0);
-
-// void writeTable(
-//     const std::vector<std::vector<uint64_t>> &table,
-//     const std::string &fileName,
-//     const std::vector<std::string> &header = std::vector<std::string>(),
-//     const char delimiter = ',');
-
-std::vector<std::string> concate1(
-    const std::vector<std::string> &features,
-    std::map<std::string, std::vector<std::string>> &rawTable);
-
-std::vector<std::string> concate2(
-    const std::vector<std::string> &features,
-    std::map<std::string, std::vector<std::string>> &rawTable);
-
-std::vector<std::byte> hashWithDummy(const std::vector<std::string> &column,
-                                     const uint32_t hashSizeInByte,
-                                     const osuCrypto::block dummyBlock);
-
-std::unordered_map<uint32_t, uint32_t> findLink(
-    const std::vector<std::string> &fromIDs,
-    const std::vector<std::string> &toIDs);
-
-std::vector<std::string> simulationPairWiseWithThreshold1(
-    const std::vector<std::vector<std::string>> &myTable,
-    const std::vector<std::vector<std::string>> &theirTable,
-    const std::vector<std::string> &theirIDs);
-
-std::vector<std::string> simulationAlg1WithThreshold1(
-    const std::vector<std::vector<std::string>> &myTable,
-    const std::vector<std::vector<std::string>> &theirTable,
-    const std::vector<std::string> &theirIDs);
-
-void checkAccuracy(std::unordered_map<uint32_t, uint32_t> &link,
-                   const std::vector<std::string> &derivedIDs,
-                   const std::vector<std::string> &theirIDs);
 }  // namespace fuzzypc::common

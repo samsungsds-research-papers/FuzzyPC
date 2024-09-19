@@ -40,3 +40,5 @@ target_link_libraries(libFuzzyPC PUBLIC
 )
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/test)
+
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/run)

@@ -8,8 +8,6 @@ dissemination, or reproduction of this material is strictly forbidden unless
 prior written permission is obtained from Samsung SDS Co. Ltd.
 */
 
-#pragma once
-
 #include "SparseVector.h"
 
 namespace fuzzypc::structures {

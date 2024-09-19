@@ -134,11 +134,11 @@ vector<vector<string>> concatenate(map<string, vector<string>> &table,
     return result;
 }
 
-void deduplication(const vector<string> &column, vector<string> &deduped,
-                   vector<size_t> &idxFromDeduped) {
+void deduplication(const vector<string> &column, vector<string> &deduplicated,
+                   vector<size_t> &deduplicatedToRows) {
     // clear memory
-    deduped.clear();
-    idxFromDeduped.clear();
+    deduplicated.clear();
+    deduplicatedToRows.clear();
 
     // find duplicated items using unordered_map
     unordered_map<string, vector<size_t>> mapFromStringToIndex;
@@ -153,14 +153,14 @@ void deduplication(const vector<string> &column, vector<string> &deduped,
             vector<size_t> indices = mapFromStringToIndex[column[i]];
             if (indices.size() > 1) {
                 size_t selected = random64() % indices.size();
-                deduped.push_back(column[indices[selected]]);
-                idxFromDeduped.push_back(indices[selected]);
+                deduplicated.push_back(column[indices[selected]]);
+                deduplicatedToRows.push_back(indices[selected]);
                 for (size_t j = 0; j < indices.size(); j++) {
                     checked[indices[j]] = true;
                 }
             } else {  // no duplication case
-                deduped.push_back(column[i]);
-                idxFromDeduped.push_back(i);
+                deduplicated.push_back(column[i]);
+                deduplicatedToRows.push_back(i);
                 checked[i] = true;
             }
         }
